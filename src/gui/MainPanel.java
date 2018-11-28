@@ -8,7 +8,6 @@ package gui;
  * A Panel that creates the buttons, extra text at the
  * top of the frame, and the file upload function
  */
-
 public class MainPanel
 {
 

@@ -8,7 +8,6 @@ package gui;
  * A Panel that is in charge of selecting
  * the statistics to calculate
  */
-
 public class StatisticsPanel
 {
 

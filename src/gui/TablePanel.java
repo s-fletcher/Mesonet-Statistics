@@ -8,7 +8,6 @@ package gui;
  * A Panel that shows a table of the
  * results.
  */
-
 public class TablePanel
 {
 
