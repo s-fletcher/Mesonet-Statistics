@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import model.Driver;
@@ -24,6 +25,9 @@ import model.Driver;
  */
 public class MesonetFrame extends JFrame
 {
+    /** Holds the frame object */
+    public static MesonetFrame frame;
+    
     /**
      * The menu bar of the frame. Responsible for the
      * Open Data File and Exit buttons.
@@ -67,21 +71,22 @@ public class MesonetFrame extends JFrame
             }
             if(e.getSource() == openButton)
             {
-                System.out.println("Open");
                 JFileChooser fileChooser = new JFileChooser();
                 int returnVal = fileChooser.showOpenDialog(fileChooser);
                 if (returnVal == JFileChooser.APPROVE_OPTION) {
                      File file = fileChooser.getSelectedFile();
-                     System.out.println(file.getName());
                         try
                         {
                             Driver driver = new Driver(file.getName(), file.getParent());
                             driver.constructAndParse();
                         }
-                        catch (IOException e1)
+                        catch (Exception e1)
                         {
                             // TODO Auto-generated catch block
-                            e1.printStackTrace();
+                            JOptionPane.showMessageDialog(frame,
+                                    "\'" + e1.getMessage() + "\'\nCheck that you selected the correct file.",
+                                    "Error",
+                                    JOptionPane.ERROR_MESSAGE);
                         }
                 }
             }
@@ -115,7 +120,7 @@ public class MesonetFrame extends JFrame
     
     public static void main(String[] args)
     {
-        MesonetFrame frame = new MesonetFrame("Oklahoma Mesonet - Statistics Calculator");
+        frame = new MesonetFrame("Oklahoma Mesonet - Statistics Calculator");
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 

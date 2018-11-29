@@ -20,8 +20,12 @@ public class Driver
     public int minute;
     public String directory;
     
-    public Driver(String fileName, String directory)
+    public Driver(String fileName, String directory) throws Exception
     {
+        if(fileName.length() != 16)
+        {
+            throw new Exception("Invalid file");
+        }
         year = Integer.parseInt(fileName.substring(0, 4));
         month = Integer.parseInt(fileName.substring(4, 6));
         day = Integer.parseInt(fileName.substring(6, 8));
