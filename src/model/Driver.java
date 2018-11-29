@@ -11,10 +11,33 @@ import java.io.IOException;
  */
 public class Driver
 {
-    public Driver(int year, int month, int day, int hour, int minute, String directory) throws IOException
+    
+    public MapData mapData;
+    public int year;
+    public int month;
+    public int day;
+    public int hour;
+    public int minute;
+    public String directory;
+    
+    public Driver(String fileName, String directory)
     {
-        MapData mapData = new MapData(year, month, day, hour, minute, directory);
+        year = Integer.parseInt(fileName.substring(0, 4));
+        month = Integer.parseInt(fileName.substring(4, 6));
+        day = Integer.parseInt(fileName.substring(6, 8));
+        hour = Integer.parseInt(fileName.substring(8, 10));
+        minute = Integer.parseInt(fileName.substring(10, 12));
+        this.directory = directory;
+    }
+    
+    public void constructAndParse() throws IOException
+    {
+        mapData = new MapData(year, month, day, hour, minute, directory);
         mapData.parseFile();
     }
-
+    
+    public void consoleOutput()
+    {
+        System.out.println(mapData);
+    }
 }

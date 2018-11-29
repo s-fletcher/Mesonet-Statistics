@@ -71,7 +71,7 @@ public class MapData
      */
     public MapData(int year, int month, int day, int hour, int minute, String directory)
     {
-        fileName = directory + "/" + createFileName(year, month, day, hour, minute);
+        fileName = directory + "\\" + createFileName(year, month, day, hour, minute);
         utcDateTime = new GregorianCalendar(year, month-1, day, hour, minute);
     }
     
@@ -80,7 +80,7 @@ public class MapData
      */
     public MapData()
     {
-        fileName = "data/" + createFileName(0000,00,00,00,00);
+        fileName = "data\\" + createFileName(0000,00,00,00,00);
         utcDateTime = new GregorianCalendar(0000, 0, 0, 0, 0);    
     }
     /**
@@ -99,7 +99,7 @@ public class MapData
      */
     private void parseParamHeader(String inParamStr) throws IOException
     {
-        BufferedReader br = new BufferedReader(new FileReader("./"+fileName));
+        BufferedReader br = new BufferedReader(new FileReader(inParamStr));
         // Skipping first two lines then setting up Scanner of headers
         br.readLine();
         br.readLine();
@@ -144,7 +144,7 @@ public class MapData
      */
     public void parseFile() throws IOException
     {
-        File tmpDir = new File("./"+fileName);
+        File tmpDir = new File(fileName);
         if(tmpDir.exists())
         {
             parseParamHeader(fileName);
@@ -236,7 +236,7 @@ public class MapData
      */
     private void prepareDataCatalog() throws IOException
     {
-        BufferedReader br = new BufferedReader(new FileReader("./"+fileName));
+        BufferedReader br = new BufferedReader(new FileReader(fileName));
         // Setting up header index's
         // Skipping to line of irrelevant data
         br.readLine();
