@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.border.EmptyBorder;
 
 /**
@@ -67,13 +68,23 @@ public class MainPanel extends JPanel
         // Adding components
         add(text, BorderLayout.PAGE_START);
         add(buttons, BorderLayout.PAGE_END);
-        add(new ParameterPanel());
+        add(new ParameterPanel(), BorderLayout.LINE_START);
+        add(new StatisticsPanel(), BorderLayout.CENTER);
         
         /** Calculate button is pressed */
         calculate.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                System.out.print("Boxes checked: ");
+                System.out.print("Parameter boxes checked: ");
                 for(JCheckBox element : ParameterPanel.getCheckBoxes())
+                {
+                    if(element.isSelected())
+                    {
+                        System.out.print(element.getText() + " ");
+                    }
+                }
+                System.out.println();
+                System.out.print("Statistic box checked: ");
+                for(JRadioButton element : StatisticsPanel.getRadioButtons())
                 {
                     if(element.isSelected())
                     {

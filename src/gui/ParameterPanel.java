@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.JCheckBox;
 import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
@@ -32,7 +33,7 @@ public class ParameterPanel extends JPanel
     {
         super();
         
-        GridLayout layout = new GridLayout(6,0);
+        GridLayout layout = new GridLayout(5,0);
         setLayout(layout);
         setBackground(MainPanel.BACKGROUND);
         JCheckBox checkBox1 = new JCheckBox("TAIR");
@@ -48,6 +49,7 @@ public class ParameterPanel extends JPanel
         for(JCheckBox element : checkBoxes)
         {
             element.setBackground(MainPanel.BACKGROUND);
+            element.setBorder(new EmptyBorder(0,10,0,4));
             add(element);
         }
         TitledBorder title = BorderFactory.createTitledBorder("Parameter");

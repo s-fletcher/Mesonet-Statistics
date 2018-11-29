@@ -47,6 +47,7 @@ public class MesonetFrame extends JFrame
         {
             super();
             
+            // Create file menu and its buttons
             JMenu fileMenu = new JMenu("File");
             openButton = new JMenuItem("Open Data File");
             exitButton = new JMenuItem("Exit");
@@ -62,10 +63,12 @@ public class MesonetFrame extends JFrame
          */
         public void actionPerformed(ActionEvent e) 
         {
+            // "Exit" is clicked
             if(e.getSource() == exitButton)
             {
                 System.exit(0);
             }
+            // "Open Data" File is clicked
             if(e.getSource() == openButton)
             {
                 JFileChooser fileChooser = new JFileChooser();
@@ -80,6 +83,7 @@ public class MesonetFrame extends JFrame
                     }
                     catch (Exception e1)
                     {
+                        // Present error message
                         JOptionPane.showMessageDialog(frame,
                                 "\'" + e1.getMessage() + "\'\nCheck that you selected the correct file.",
                                 "Error",
@@ -112,8 +116,10 @@ public class MesonetFrame extends JFrame
         int width = 850;
         int height = 470;
         
+        // Sets up menu bar
         setJMenuBar(new FileMenuBar());
         
+        // Sets size and other stuff and makes frame visible
         setSize(width, height);
         setResizable(false);
         setLocationRelativeTo(null);
