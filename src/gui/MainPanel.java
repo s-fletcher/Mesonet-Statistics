@@ -2,12 +2,12 @@ package gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -28,7 +28,7 @@ public class MainPanel extends JPanel
      */
     private static final long serialVersionUID = 1L;
     /** Default background color */
-    public final Color background = new Color(138,141,130);
+    public static final Color BACKGROUND = new Color(138,141,130);
     /** Header label */
     public JLabel text = new JLabel("Mesonet - We don't set records, we report them!");
     /** Calculate button */
@@ -36,7 +36,13 @@ public class MainPanel extends JPanel
     /** Exit button */
     public JButton exit = new JButton("Exit");
 
-    
+    /**
+     * Default constructor for the main panel.
+     * 
+     * Constructs the top text and lower buttons. It
+     * also brings in all of the other panels to add
+     * to the frame.
+     */
     public MainPanel()
     {
         super();
@@ -53,7 +59,7 @@ public class MainPanel extends JPanel
         
         // Setting up buttons
         JPanel buttons = new JPanel(new FlowLayout());
-        buttons.setBackground(background);
+        buttons.setBackground(BACKGROUND);
         JButton exit = new JButton("Exit");
         buttons.add(calculate);
         buttons.add(exit);
@@ -61,13 +67,24 @@ public class MainPanel extends JPanel
         // Adding components
         add(text, BorderLayout.PAGE_START);
         add(buttons, BorderLayout.PAGE_END);
+        add(new ParameterPanel());
         
+        /** Calculate button is pressed */
         calculate.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Calculate has been pressed");
+                System.out.print("Boxes checked: ");
+                for(JCheckBox element : ParameterPanel.getCheckBoxes())
+                {
+                    if(element.isSelected())
+                    {
+                        System.out.print(element.getText() + " ");
+                    }
+                }
+                System.out.println();
             } 
         });
         
+        /** Exit button is pressed */
         exit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 System.exit(0);
