@@ -1,5 +1,7 @@
 package gui;
 
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -7,6 +9,7 @@ import java.io.IOException;
 
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -73,21 +76,21 @@ public class MesonetFrame extends JFrame
             {
                 JFileChooser fileChooser = new JFileChooser();
                 int returnVal = fileChooser.showOpenDialog(fileChooser);
-                if (returnVal == JFileChooser.APPROVE_OPTION) {
-                     File file = fileChooser.getSelectedFile();
-                        try
-                        {
-                            Driver driver = new Driver(file.getName(), file.getParent());
-                            driver.constructAndParse();
-                        }
-                        catch (Exception e1)
-                        {
-                            // TODO Auto-generated catch block
-                            JOptionPane.showMessageDialog(frame,
-                                    "\'" + e1.getMessage() + "\'\nCheck that you selected the correct file.",
-                                    "Error",
-                                    JOptionPane.ERROR_MESSAGE);
-                        }
+                if (returnVal == JFileChooser.APPROVE_OPTION) 
+                {
+                    File file = fileChooser.getSelectedFile();
+                    try
+                    {
+                        Driver driver = new Driver(file.getName(), file.getParent());
+                        driver.constructAndParse();
+                    }
+                    catch (Exception e1)
+                    {
+                        JOptionPane.showMessageDialog(frame,
+                                "\'" + e1.getMessage() + "\'\nCheck that you selected the correct file.",
+                                "Error",
+                                JOptionPane.ERROR_MESSAGE);
+                    }
                 }
             }
         }
@@ -106,9 +109,14 @@ public class MesonetFrame extends JFrame
     {
         super(title);
         
-        // RATIO: 6.8:13
-        int width = 1000;
-        int height = 523;
+        // Add main panel
+        setLayout(new BorderLayout());
+        MainPanel main = new MainPanel();
+        add(main);
+        
+        // RATIO: 16:29
+        int width = 850;
+        int height = 470;
         
         setJMenuBar(new FileMenuBar());
         
