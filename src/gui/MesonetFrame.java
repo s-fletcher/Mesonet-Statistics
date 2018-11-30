@@ -38,7 +38,9 @@ public class MesonetFrame extends JFrame
         private static final long serialVersionUID = 1L;
         
         /** Menu buttons for opening a file and exiting the program */
-        JMenuItem openButton, exitButton;
+        public JMenuItem openButton, exitButton;
+        /** Holds the frame object */
+        public JFrame frame;
         
         /**
          * Constructs the menu bar
@@ -107,6 +109,7 @@ public class MesonetFrame extends JFrame
     {
         super(title);
         
+        frame = this;
         // Add main panel
         setLayout(new BorderLayout());
         MainPanel main = new MainPanel();

@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.border.EmptyBorder;
@@ -75,23 +76,60 @@ public class MainPanel extends JPanel
         calculate.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 System.out.print("Parameter boxes checked: ");
+                boolean parameterSelected = false;
                 for(JCheckBox element : ParameterPanel.getCheckBoxes())
                 {
                     if(element.isSelected())
                     {
+                        parameterSelected = true;
                         System.out.print(element.getText() + " ");
                     }
                 }
                 System.out.println();
+                boolean statisticSelected = false;
                 System.out.print("Statistic box checked: ");
                 for(JRadioButton element : StatisticsPanel.getRadioButtons())
                 {
                     if(element.isSelected())
                     {
+                        statisticSelected = true;
                         System.out.print(element.getText() + " ");
                     }
                 }
                 System.out.println();
+                
+                if(!parameterSelected && statisticSelected)
+                {
+                    JOptionPane.showMessageDialog(
+                            MesonetFrame.frame, 
+                            "Make sure you have selected a parameter.",
+                            "Unable to calculate.",
+                            JOptionPane.INFORMATION_MESSAGE
+                            );                
+                }
+                else if(parameterSelected && !statisticSelected)
+                {
+                    JOptionPane.showMessageDialog(
+                            MesonetFrame.frame, 
+                            "Make sure you have selected a statistic.",
+                            "Unable to calculate.",
+                            JOptionPane.INFORMATION_MESSAGE
+                            );  
+                }
+                else if(!parameterSelected && !statisticSelected)
+                {
+                    JOptionPane.showMessageDialog(
+                            MesonetFrame.frame, 
+                            "Make sure you have selected a parameter and statistic.",
+                            "Unable to calculate.",
+                            JOptionPane.INFORMATION_MESSAGE
+                            );  
+                }
+                else
+                {
+                    System.out.println("Everything selected. Continue my friend.");
+                }
+                
             } 
         });
         
