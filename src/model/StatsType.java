@@ -12,5 +12,29 @@ public enum StatsType
     AVERAGE,
     MINIMUM,
     MAXIMUM,
-    TOTAL
+    TOTAL;
+    
+    public static StatsType getStatsType(String stat)
+    {
+        if(stat.equalsIgnoreCase("Average"))
+        {
+            return AVERAGE;
+        }
+        else if(stat.equalsIgnoreCase("Minimum"))
+        {
+            return MINIMUM;
+        }
+        else if(stat.equalsIgnoreCase("Maximum"))
+        {
+            return MAXIMUM;
+        }
+        else if(stat.equalsIgnoreCase("Total"))
+        {
+            return TOTAL;
+        }
+        else
+        {
+            return null;
+        }
+    }
 }

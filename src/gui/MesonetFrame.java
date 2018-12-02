@@ -24,6 +24,7 @@ public class MesonetFrame extends JFrame
 {
     /** Holds the frame object */
     public static MesonetFrame frame;
+    public static Driver driver;
     
     /**
      * The menu bar of the frame. Responsible for the
@@ -80,7 +81,7 @@ public class MesonetFrame extends JFrame
                     File file = fileChooser.getSelectedFile();
                     try
                     {
-                        Driver driver = new Driver(file.getName(), file.getParent());
+                        driver = new Driver(file.getName(), file.getParent());
                         driver.constructAndParse();
                     }
                     catch (Exception e1)

@@ -12,13 +12,13 @@ import java.io.IOException;
 public class Driver
 {
     
-    public MapData mapData;
-    public int year;
-    public int month;
-    public int day;
-    public int hour;
-    public int minute;
-    public String directory;
+    private MapData mapData;
+    private int year;
+    private int month;
+    private int day;
+    private int hour;
+    private int minute;
+    private String directory;
     
     public Driver(String fileName, String directory) throws Exception
     {
@@ -43,5 +43,13 @@ public class Driver
     public void consoleOutput()
     {
         System.out.println(mapData);
+    }
+
+    /**
+     * @return the mapData
+     */
+    public MapData getMapData()
+    {
+        return mapData;
     }
 }

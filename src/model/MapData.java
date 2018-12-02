@@ -275,7 +275,7 @@ public class MapData
     /**
      * Calculates all of the statistics
      */
-    private void calculateStatistics() 
+    public void calculateStatistics() 
     {
         calculateAllStatistics();
     }

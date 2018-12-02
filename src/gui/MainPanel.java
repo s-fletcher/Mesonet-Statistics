@@ -15,6 +15,10 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.border.EmptyBorder;
 
+import model.MapData;
+import model.Statistics;
+import model.StatsType;
+
 /**
  * @author Sam Fletcher
  * @version 11-28-18
@@ -96,38 +100,59 @@ public class MainPanel extends JPanel
                     }
                 }
                 
-                // Making sure all boxes are checked
-                if((parameterSelected.size() == 0) && (statisticSelected != null))
+                // Making sure all boxes are checked and a file was selected
+                if(MesonetFrame.driver == null)
                 {
                     JOptionPane.showMessageDialog(
                             MesonetFrame.frame, 
-                            "Make sure you have selected a parameter.",
-                            "Unable to calculate.",
-                            JOptionPane.INFORMATION_MESSAGE
-                            );                
-                }
-                else if((parameterSelected.size() != 0) && (statisticSelected == null))
-                {
-                    JOptionPane.showMessageDialog(
-                            MesonetFrame.frame, 
-                            "Make sure you have selected a statistic.",
-                            "Unable to calculate.",
-                            JOptionPane.INFORMATION_MESSAGE
-                            );
-                }
-                else if((parameterSelected.size() == 0) && (statisticSelected == null))
-                {
-                    JOptionPane.showMessageDialog(
-                            MesonetFrame.frame, 
-                            "Make sure you have selected a parameter and statistic.",
+                            "Make sure you have selected a valid file.",
                             "Unable to calculate.",
                             JOptionPane.INFORMATION_MESSAGE
                             );  
                 }
-                // Everything is selected -> complete table
                 else
-                {
-                    
+                {   
+                    if((parameterSelected.size() == 0) && (statisticSelected != null))
+                    {
+                        JOptionPane.showMessageDialog(
+                                MesonetFrame.frame, 
+                                "Make sure you have selected a parameter.",
+                                "Unable to calculate.",
+                                JOptionPane.INFORMATION_MESSAGE
+                                );                
+                    }
+                    else if((parameterSelected.size() != 0) && (statisticSelected == null))
+                    {
+                        JOptionPane.showMessageDialog(
+                                MesonetFrame.frame, 
+                                "Make sure you have selected a statistic.",
+                                "Unable to calculate.",
+                                JOptionPane.INFORMATION_MESSAGE
+                                );
+                    }
+                    else if((parameterSelected.size() == 0) && (statisticSelected == null))
+                    {
+                        JOptionPane.showMessageDialog(
+                                MesonetFrame.frame, 
+                                "Make sure you have selected a parameter and statistic.",
+                                "Unable to calculate.",
+                                JOptionPane.INFORMATION_MESSAGE
+                                );  
+                    }
+                    // Everything is selected -> complete table
+                    else
+                    {
+                        MapData mapData = MesonetFrame.driver.getMapData();
+                        mapData.calculateStatistics();
+                        ArrayList<Statistics> statistics = new ArrayList<>();
+                        for(int i = 0; i < parameterSelected.size(); i++)
+                        {
+                            statistics.add(mapData.getStatistics(StatsType.getStatsType(statisticSelected),parameterSelected.get(i)));
+                            System.out.println(mapData.getStatistics(StatsType.getStatsType(statisticSelected),parameterSelected.get(i)).getStid());
+                            System.out.println(mapData.getStatistics(StatsType.getStatsType(statisticSelected),parameterSelected.get(i)).getValue());
+                        }
+                        System.out.println(mapData);
+                    }
                 }
                 
             } 
