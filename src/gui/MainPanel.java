@@ -71,6 +71,7 @@ public class MainPanel extends JPanel
         add(buttons, BorderLayout.PAGE_END);
         add(new ParameterPanel(), BorderLayout.LINE_START);
         add(new StatisticsPanel(), BorderLayout.CENTER);
+        add(new TablePanel(), BorderLayout.LINE_END);
         
         /** Calculate button is pressed */
         calculate.addActionListener(new ActionListener() {
@@ -114,7 +115,7 @@ public class MainPanel extends JPanel
                             "Make sure you have selected a statistic.",
                             "Unable to calculate.",
                             JOptionPane.INFORMATION_MESSAGE
-                            );  
+                            );
                 }
                 else if(!parameterSelected && !statisticSelected)
                 {
