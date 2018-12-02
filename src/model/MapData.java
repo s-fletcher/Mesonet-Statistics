@@ -52,6 +52,10 @@ public class MapData
     private final String TAIR = "TAIR";
     /** Constant for SRAD name */
     private final String SRAD = "SRAD";
+    /** Constant for WSPD name */
+    private final String WSPD = "WSPD";
+    /** Constant for PRES name */
+    private final String PRES = "PRES";
     /** Constant for STID name */
     private final String STID = "STID";
     
@@ -125,6 +129,14 @@ public class MapData
             {
                 paramPositions.put(TA9M, i);
             }
+            else if(line[i].equals(WSPD))
+            {
+                paramPositions.put(WSPD, i);
+            }
+            else if(line[i].equals(PRES))
+            {
+                paramPositions.put(PRES, i);
+            }
         }    
     }
     
@@ -161,7 +173,7 @@ public class MapData
      */
     private void calculateAllStatistics()
     {
-        String[] params = {SRAD, TA9M, TAIR};
+        String[] params = {SRAD, TA9M, TAIR, WSPD, PRES};
         TreeMap<String, Statistics> averageTM = new TreeMap<>();
         TreeMap<String, Statistics> maxTM = new TreeMap<>();
         TreeMap<String, Statistics> minTM = new TreeMap<>();
@@ -247,10 +259,14 @@ public class MapData
         double tair = 0;
         double srad = 0;
         double ta9m = 0;
+        double wspd = 0;
+        double pres = 0;
         String line;
         ArrayList<Observation> tairObs = new ArrayList<>();
         ArrayList<Observation> sradObs = new ArrayList<>();
         ArrayList<Observation> ta9mObs = new ArrayList<>();
+        ArrayList<Observation> wspdObs = new ArrayList<>();
+        ArrayList<Observation> presObs = new ArrayList<>();
         // Going through whole file, line by line
         int count = 0;
         while((line = br.readLine()) != null) 
@@ -261,14 +277,20 @@ public class MapData
             tair = Double.parseDouble(lineData[getIndexOf(TAIR)]);
             srad = Double.parseDouble(lineData[getIndexOf(SRAD)]);
             ta9m = Double.parseDouble(lineData[getIndexOf(TA9M)]);
+            wspd = Double.parseDouble(lineData[getIndexOf(WSPD)]);
+            pres = Double.parseDouble(lineData[getIndexOf(PRES)]);
             tairObs.add(new Observation(tair, stid));
             sradObs.add(new Observation(srad, stid));
             ta9mObs.add(new Observation(ta9m, stid));
+            wspdObs.add(new Observation(wspd, stid));
+            presObs.add(new Observation(pres, stid));
         }
         br.close();
         dataCatalog.put(TAIR, tairObs);
         dataCatalog.put(SRAD, sradObs);
         dataCatalog.put(TA9M, ta9mObs);
+        dataCatalog.put(WSPD, wspdObs);
+        dataCatalog.put(PRES, presObs);
         numberOfStations = count;    
     }
     

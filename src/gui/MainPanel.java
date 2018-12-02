@@ -80,6 +80,10 @@ public class MainPanel extends JPanel
         add(new StatisticsPanel(), BorderLayout.CENTER);
         add(tablePanel, BorderLayout.LINE_END);
         
+        // Setting focusable to false
+        calculate.setFocusable(false);
+        exit.setFocusable(false);
+        
         /** Calculate button is pressed */
         calculate.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {

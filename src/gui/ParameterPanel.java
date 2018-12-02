@@ -49,6 +49,7 @@ public class ParameterPanel extends JPanel
         for(JCheckBox element : checkBoxes)
         {
             element.setBackground(MainPanel.BACKGROUND);
+            element.setFocusable(false);
             element.setBorder(new EmptyBorder(0,10,0,4));
             add(element);
         }

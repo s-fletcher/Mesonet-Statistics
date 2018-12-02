@@ -51,6 +51,7 @@ public class StatisticsPanel extends JPanel
         for(JRadioButton element : radioButtons)
         {
             element.setBackground(new Color(116,121,111));
+            element.setFocusable(false);
             bg.add(element);
             add(element);
         }

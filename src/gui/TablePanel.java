@@ -43,7 +43,6 @@ public class TablePanel extends JPanel
         
         // Set up data
         String[] header = {"Station","Parameter","Statistics","Value","Reporting Stations","Date"};
-        String[] testData = {"HOOK","TAIR","MAXIMUM","968.0","118","2018-08-20T17:45:00 UTC"};
         
         // Set up table
         table = new JTable(0,6);
@@ -67,14 +66,12 @@ public class TablePanel extends JPanel
         }
         
         // Changing column widths
-//        defaultModel.addRow(testData);
-//        defaultModel.addRow(testData);
         table.setGridColor(Color.WHITE);
-        columnModel.getColumn(0).setPreferredWidth((int) (scrollPane.getPreferredSize().getWidth() * .08));
+        columnModel.getColumn(0).setPreferredWidth((int) (scrollPane.getPreferredSize().getWidth() * .09));
         columnModel.getColumn(1).setPreferredWidth((int) (scrollPane.getPreferredSize().getWidth() * .10));
         columnModel.getColumn(2).setPreferredWidth((int) (scrollPane.getPreferredSize().getWidth() * .11));
-        columnModel.getColumn(3).setPreferredWidth((int) (scrollPane.getPreferredSize().getWidth() * .07));
+        columnModel.getColumn(3).setPreferredWidth((int) (scrollPane.getPreferredSize().getWidth() * .09));
         columnModel.getColumn(4).setPreferredWidth((int) (scrollPane.getPreferredSize().getWidth() * .18));
-        columnModel.getColumn(5).setPreferredWidth((int) (scrollPane.getPreferredSize().getWidth() * .46));
+        columnModel.getColumn(5).setPreferredWidth((int) (scrollPane.getPreferredSize().getWidth() * .43));
     }
 }
