@@ -224,13 +224,13 @@ public class MapData
             double average = total/valid;
             average = Math.round(average * 10.0) / 10.0;
             Statistics maxStat = new Statistics(maxValue, maxObs.getStid(), 
-                    utcDateTime, numberOfStations, StatsType.MAXIMUM);
+                    utcDateTime, numberOfStations-invalid, StatsType.MAXIMUM);
             Statistics minStat = new Statistics(minValue, minObs.getStid(),
-                    utcDateTime, numberOfStations, StatsType.MINIMUM);
+                    utcDateTime, numberOfStations-invalid, StatsType.MINIMUM);
             Statistics averageStat = new Statistics(average, MESONET, 
-                    utcDateTime, numberOfStations, StatsType.AVERAGE);
+                    utcDateTime, numberOfStations-invalid, StatsType.AVERAGE);
             Statistics totalStat = new Statistics(total, MESONET,
-                    utcDateTime, numberOfStations, StatsType.TOTAL);
+                    utcDateTime, numberOfStations-invalid, StatsType.TOTAL);
             averageTM.put(param, averageStat);
             maxTM.put(param, maxStat);
             minTM.put(param, minStat);
