@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -76,30 +77,27 @@ public class MainPanel extends JPanel
         /** Calculate button is pressed */
         calculate.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                System.out.print("Parameter boxes checked: ");
-                boolean parameterSelected = false;
+                // Getting all of the parameters selected
+                ArrayList<String> parameterSelected = new ArrayList<>();
                 for(JCheckBox element : ParameterPanel.getCheckBoxes())
                 {
                     if(element.isSelected())
                     {
-                        parameterSelected = true;
-                        System.out.print(element.getText() + " ");
+                        parameterSelected.add(element.getText());
                     }
                 }
-                System.out.println();
-                boolean statisticSelected = false;
-                System.out.print("Statistic box checked: ");
+                // Getting all statistics selected
+                String statisticSelected = null;
                 for(JRadioButton element : StatisticsPanel.getRadioButtons())
                 {
                     if(element.isSelected())
                     {
-                        statisticSelected = true;
-                        System.out.print(element.getText() + " ");
+                        statisticSelected = element.getText();
                     }
                 }
-                System.out.println();
                 
-                if(!parameterSelected && statisticSelected)
+                // Making sure all boxes are checked
+                if((parameterSelected.size() == 0) && (statisticSelected != null))
                 {
                     JOptionPane.showMessageDialog(
                             MesonetFrame.frame, 
@@ -108,7 +106,7 @@ public class MainPanel extends JPanel
                             JOptionPane.INFORMATION_MESSAGE
                             );                
                 }
-                else if(parameterSelected && !statisticSelected)
+                else if((parameterSelected.size() != 0) && (statisticSelected == null))
                 {
                     JOptionPane.showMessageDialog(
                             MesonetFrame.frame, 
@@ -117,7 +115,7 @@ public class MainPanel extends JPanel
                             JOptionPane.INFORMATION_MESSAGE
                             );
                 }
-                else if(!parameterSelected && !statisticSelected)
+                else if((parameterSelected.size() == 0) && (statisticSelected == null))
                 {
                     JOptionPane.showMessageDialog(
                             MesonetFrame.frame, 
@@ -126,9 +124,10 @@ public class MainPanel extends JPanel
                             JOptionPane.INFORMATION_MESSAGE
                             );  
                 }
+                // Everything is selected -> complete table
                 else
                 {
-                    System.out.println("Everything selected. Continue my friend.");
+                    
                 }
                 
             } 
