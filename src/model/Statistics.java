@@ -121,15 +121,14 @@ public class Statistics extends Observation implements DateTimeComparable
      */
     public String createStringFromDate(GregorianCalendar calendar)
     {
-        int year = calendar.get(Calendar.YEAR);
-        int month = calendar.get(Calendar.MONTH);
-        int day = calendar.get(Calendar.DAY_OF_MONTH);
-        int hour = calendar.get(Calendar.HOUR_OF_DAY);
-        int minute = calendar.get(Calendar.MINUTE);
-        int second = calendar.get(Calendar.SECOND);
-        String timeZone = calendar.getTimeZone().getID();
-        String result = year + "-" + (month + 1) + "-" + day + "'T'" + hour + ":" + minute + ":" 
-                + second + " " + timeZone;        
+        String year = String.format("%04d", calendar.get(Calendar.YEAR));
+        String month = String.format("%02d", calendar.get(Calendar.MONTH)+1);
+        String day = String.format("%02d", calendar.get(Calendar.DAY_OF_MONTH));
+        String hour = String.format("%02d", calendar.get(Calendar.HOUR_OF_DAY));
+        String minute = String.format("%02d", calendar.get(Calendar.MINUTE));
+        String second = String.format("%02d", calendar.get(Calendar.SECOND));
+        String result = year + "-" + month + "-" + day + "T" + hour + ":" + minute + ":" 
+                + second + " UTC";        
         return result;
     }
     
@@ -243,13 +242,13 @@ public class Statistics extends Observation implements DateTimeComparable
      */
     public String getUtcDateTime()
     {
-        if(utcDateTime != null)
-        {
-            return createStringFromDate(utcDateTime);
-        }
-        else if(zdtDateTime != null)
+        if(zdtDateTime != null)
         {
             return createStringFromDate(zdtDateTime);
+        }
+        else if(utcDateTime != null)
+        {
+            return createStringFromDate(utcDateTime);
         }
         else {
             return "Error: No date time set.";

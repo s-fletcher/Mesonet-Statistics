@@ -42,7 +42,9 @@ public class MainPanel extends JPanel
     public JButton calculate = new JButton("Calculate");
     /** Exit button */
     public JButton exit = new JButton("Exit");
-
+    /** Holds the TablePanel object */
+    public static TablePanel tablePanel = new TablePanel();
+    
     /**
      * Default constructor for the main panel.
      * 
@@ -76,7 +78,7 @@ public class MainPanel extends JPanel
         add(buttons, BorderLayout.PAGE_END);
         add(new ParameterPanel(), BorderLayout.LINE_START);
         add(new StatisticsPanel(), BorderLayout.CENTER);
-        add(new TablePanel(), BorderLayout.LINE_END);
+        add(tablePanel, BorderLayout.LINE_END);
         
         /** Calculate button is pressed */
         calculate.addActionListener(new ActionListener() {
@@ -148,8 +150,20 @@ public class MainPanel extends JPanel
                         for(int i = 0; i < parameterSelected.size(); i++)
                         {
                             statistics.add(mapData.getStatistics(StatsType.getStatsType(statisticSelected),parameterSelected.get(i)));
-                            System.out.println(mapData.getStatistics(StatsType.getStatsType(statisticSelected),parameterSelected.get(i)).getStid());
-                            System.out.println(mapData.getStatistics(StatsType.getStatsType(statisticSelected),parameterSelected.get(i)).getValue());
+                        }
+                        tablePanel.defaultModel.setRowCount(0);
+                        for(int i = 0; i < statistics.size(); i++)
+                        {
+                            Statistics stat = statistics.get(i);
+                            String[] data = {
+                                    stat.getStid(),
+                                    parameterSelected.get(i),
+                                    stat.getStatType().toString(),
+                                    String.valueOf(stat.getValue()),
+                                    String.valueOf(stat.getNumberOfReportingStations()),
+                                    stat.getUtcDateTime()
+                            };
+                            tablePanel.defaultModel.addRow(data);
                         }
                         System.out.println(mapData);
                     }

@@ -24,6 +24,7 @@ public class MesonetFrame extends JFrame
 {
     /** Holds the frame object */
     public static MesonetFrame frame;
+    /** Holds the driver object for MapData */
     public static Driver driver;
     
     /**

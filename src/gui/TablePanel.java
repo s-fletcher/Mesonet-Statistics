@@ -31,11 +31,11 @@ public class TablePanel extends JPanel
     /** Table reference */
     public static JTable table;
     /** Table Model reference */
-    public static TableModel tableModel;
+    public TableModel tableModel;
     /** Table Column Model reference */
-    public static TableColumnModel columnModel;
+    public TableColumnModel columnModel;
     /** Default Table Model reference */
-    public static DefaultTableModel defaultModel;
+    public DefaultTableModel defaultModel;
     
     public TablePanel()
     {
@@ -67,8 +67,8 @@ public class TablePanel extends JPanel
         }
         
         // Changing column widths
-        defaultModel.addRow(testData);
-        defaultModel.addRow(testData);
+//        defaultModel.addRow(testData);
+//        defaultModel.addRow(testData);
         table.setGridColor(Color.WHITE);
         columnModel.getColumn(0).setPreferredWidth((int) (scrollPane.getPreferredSize().getWidth() * .08));
         columnModel.getColumn(1).setPreferredWidth((int) (scrollPane.getPreferredSize().getWidth() * .10));
