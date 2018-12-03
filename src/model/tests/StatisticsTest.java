@@ -75,7 +75,7 @@ public class StatisticsTest
     {
         Statistics stat = new Statistics();
         stat.createDateFromString("2018-8-22'T'13:49:30 CST");
-        String expected = "2018-8-22'T'13:49:30 CST";
+        String expected = "2018-08-22T13:49:30 UTC";
         String actual = stat.createStringFromDate(stat.getGregorianCalendar());
         Assert.assertEquals(expected, actual); 
         
@@ -171,7 +171,7 @@ public class StatisticsTest
         stat3.createDateFromString("2018-08-22'T'13:49:30 CST");
         String expected1 = "TEST 10.0 true 2018-08-22T13:49:30Z[UTC] 1 TOTAL";
         String expected2 = "TEST 10.0 true Time-not-set 1 TOTAL";
-        String expected3 = "TEST 10.0 true 2018-8-22'T'13:49:30 CST 1 TOTAL";
+        String expected3 = "TEST 10.0 true 2018-08-22T13:49:30 UTC 1 TOTAL";
         Assert.assertEquals(expected1, stat1.toString());
         Assert.assertEquals(expected2, stat2.toString());
         Assert.assertEquals(expected3, stat3.toString());

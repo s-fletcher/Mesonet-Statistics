@@ -9,7 +9,7 @@ import org.junit.Test;
 
 import model.MapData;
 
-public class MapDataTest extends MapData
+public class MapDataTest 
 {
 
     @Test
@@ -19,7 +19,7 @@ public class MapDataTest extends MapData
         MapData map = new MapData(2018, 5, 22, 8, 22, "data");
         GregorianCalendar cal = new GregorianCalendar(2018, 4, 22, 8, 22);
         // Testing object
-        assertEquals("data/201805220822.mdf", map.getFileName());
+        assertEquals("data\\201805220822.mdf", map.getFileName());
         assertEquals(cal, map.getUtcDateTime());
     }
 
@@ -30,7 +30,7 @@ public class MapDataTest extends MapData
         MapData map = new MapData();
         GregorianCalendar cal = new GregorianCalendar(0000, 0, 0, 0, 0);
         // Testing object
-        assertEquals("data/000000000000.mdf", map.getFileName());
+        assertEquals("data\\000000000000.mdf", map.getFileName());
         assertEquals(cal, map.getUtcDateTime());
         
     }

@@ -84,6 +84,7 @@ public class MesonetFrame extends JFrame
                     {
                         driver = new Driver(file.getName(), file.getParent());
                         driver.constructAndParse();
+                        MainPanel.tablePanel.defaultModel.setRowCount(0);
                     }
                     catch (Exception e1)
                     {
