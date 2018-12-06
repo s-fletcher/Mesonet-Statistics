@@ -183,7 +183,7 @@ public class Statistics extends Observation implements DateTimeComparable
     
     /**
      * Checks if statistic is newer than Zoned Date
-     * @param inDateTimeUTC
+     * @param inDateTime
      */
     @Override
     public boolean newerThan(ZonedDateTime inDateTime)
